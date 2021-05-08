@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 import requests
 import json
-import sys
 
 class ErbsClient(object):
     def __init__(self, api_key, version = 'v1'):
@@ -24,16 +23,13 @@ class ErbsClient(object):
         r_data = json.loads(r_json)
         user_num = r_data['user']['userNum']
         return user_num
-
-    # Get user rank
-    def get_user_rank(self, user_num, season_id, matching_team_mode):
-        url = f'{self.api_url}/rank/{user_num}/{season_id}/{matching_team_mode}'
+        
+    # Get user stats
+    def get_user_stats(self, user_num, season_id):
+        url = f'{self.api_url}/user/stats/{user_num}/{season_id}'
         r = requests.get(url, headers=self.http_header)
         r_json = json.dumps(r.json())
         r_data = json.loads(r_json)
         
-        if r_data['message'] == 'Success':
-            user_rank = r_data['userRank']
-            return user_rank
-            
-    
+        if r.status_code == 200:
+            return r_data
