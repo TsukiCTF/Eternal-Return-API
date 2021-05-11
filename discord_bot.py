@@ -50,6 +50,8 @@ async def on_message(message):
         exit()
     if message.author == client.user:
         return
+    if message.content == '!source':
+        await message.channel.send('Source code: https://github.com/TsukiCTF/Eternal-Return-API')
     if message.content == '!test':
         await message.channel.send('Hello')
     if message.content == '!rio':
@@ -90,7 +92,7 @@ def search_user_ranking(nickname):
     embedVar.set_thumbnail(url='https://media.discordapp.net/attachments/395813565208068096/841530242074148894/rio.png')
     embedVar.add_field(name='Season 2 Solo', value=get_tier(ranked_mmr[0]), inline=True)
     embedVar.add_field(name='Duo', value=get_tier(ranked_mmr[1]), inline=True)
-    embedVar.add_field(name='Squad', value=get_tier(ranked_mmr[1]), inline=True)
+    embedVar.add_field(name='Squad', value=get_tier(ranked_mmr[2]), inline=True)
     embedVar.add_field(name='Normal Solo', value='{0} MMR'.format(normal_mmr[0]), inline=True)
     embedVar.add_field(name='Duo', value='{0} MMR'.format(normal_mmr[1]), inline=True)
     embedVar.add_field(name='Squad', value='{0} MMR'.format(normal_mmr[2]), inline=True)
