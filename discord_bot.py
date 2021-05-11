@@ -44,14 +44,15 @@ TITAN = 2400
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
 
+
 @client.event
 async def on_message(message):
-    if message.content.startswith('!exit'):
-        exit()
     if message.author == client.user:
         return
+    if message.content.startswith('!'):
+        print('[+]{0}: {1}'.format(message.author, message.content)) # log message
     if message.content == '!source':
-        await message.channel.send('Source code: https://github.com/TsukiCTF/Eternal-Return-API')
+        await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
     if message.content == '!test':
         await message.channel.send('Hello')
     if message.content == '!rio':
@@ -61,6 +62,7 @@ async def on_message(message):
     if message.content.startswith('!rank '):
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
+
 
 def search_user_ranking(nickname):
     if not nickname:
@@ -97,6 +99,7 @@ def search_user_ranking(nickname):
     embedVar.add_field(name='Duo', value='{0} MMR'.format(normal_mmr[1]), inline=True)
     embedVar.add_field(name='Squad', value='{0} MMR'.format(normal_mmr[2]), inline=True)
     return embedVar
+
 
 def get_tier(mmr):
     tier = ''
@@ -153,6 +156,7 @@ def get_tier(mmr):
     elif TITAN <= mmr:
         tier += 'Titan - {0} LP'.format(mmr % TITAN)
     return tier
+
 
 # start the discord bot
 client.run(bot_token)
