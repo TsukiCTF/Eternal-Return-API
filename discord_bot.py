@@ -49,19 +49,22 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('!'):
+    if message.content.startswith('.'):
         print('[+]{0}: {1}'.format(message.author, message.content)) # log message
-    if message.content == '!source':
+    if message.content == '.help':
+        await message.channel.send('Bot commands are: ``.rank <name>``, ``.source``, ``.rio``, ``.test``')
+    if message.content == '.source':
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
-    if message.content == '!test':
+    if message.content == '.test':
         await message.channel.send('Hello')
-    if message.content == '!rio':
+    if message.content == '.rio':
         await message.channel.send('https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png')
-    if message.content == '!shoichi':
-        await message.channel.send('https://media.discordapp.net/attachments/395813565208068096/841529013625159690/viewimage.png')
-    if message.content.startswith('!rank '):
+    if message.content == '.shoichi':
+        await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg')
+    if message.content.startswith('.rank '):
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
+
 
 
 def search_user_ranking(nickname):
