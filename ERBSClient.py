@@ -30,9 +30,7 @@ class ErbsClient(object):
         r = requests.get(url, headers=self.http_header)
         r_json = json.dumps(r.json())
         r_data = json.loads(r_json)
-        
-        if r.status_code == 200:
-            return r_data
+        return r_data
             
     # Get user games
     def get_user_games(self, user_num):
@@ -40,9 +38,7 @@ class ErbsClient(object):
         r = requests.get(url, headers=self.http_header)
         r_json = json.dumps(r.json())
         r_data = json.loads(r_json)
-        
-        if r.status_code == 200:
-            return r_data
+        return r_data
             
     # Get game details
     def get_game_details(self, game_id):
@@ -50,6 +46,4 @@ class ErbsClient(object):
         r = requests.get(url, headers=self.http_header)
         r_json = json.dumps(r.json())
         r_data = json.loads(r_json)
-        
-        if r.status_code == 200:
-            return r_data
+        return r_data

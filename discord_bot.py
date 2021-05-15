@@ -43,6 +43,7 @@ TITAN = 2400
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
+    await client.change_presence(activity=discord.Game(name=".rank <user> for ER:BS ranking"))
 
 
 @client.event
@@ -61,6 +62,16 @@ async def on_message(message):
         await message.channel.send('https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png')
     if message.content == '.shoichi':
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg')
+    if message.content == '.adrianna':
+        await message.channel.send('https://cdn.discordapp.com/attachments/837001169380573227/842264006790086676/maxresdefault.png')
+    if message.content == '.lenox':
+        await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/842263098564149249/image0.jpg')
+    if message.content == '.cathy':
+        await message.channel.send('https://cdn.discordapp.com/emojis/840598438797115392.png?v=1')
+    if message.content == '.nadine':
+        await message.channel.send('https://cdn.discordapp.com/emojis/841500255614009384.png?v=1')
+    if message.content == '.isol':
+        await message.channel.send('https://cdn.discordapp.com/attachments/817667857676632075/842401073775640586/viewimage.png')
     if message.content.startswith('.rank '):
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
@@ -72,24 +83,25 @@ def search_user_ranking(nickname):
         return
     user_num = api_client.get_user_num(nickname)
     # fetch normal, ranked game stats
-    normal_user_stats = api_client.get_user_stats(user_num, 0)
     ranked_user_stats = api_client.get_user_stats(user_num, 3)
-
-    # parse normal game stats
-    normal_mmr = [0, 0, 0]
+    normal_user_stats = api_client.get_user_stats(user_num, 0)
+    
     ranked_mmr = [0, 0, 0]
-    for i in range(3):
-        try:
-            matching_team_mode = int(normal_user_stats['userStats'][i]['matchingTeamMode'])
-            normal_mmr[matching_team_mode - 1] = normal_user_stats['userStats'][i]['mmr']
-        except:
-            pass
-
+    normal_mmr = [0, 0, 0]
+    
     # parse ranked game stats
     for i in range(3):
         try:
             matching_team_mode = int(ranked_user_stats['userStats'][i]['matchingTeamMode'])
             ranked_mmr[matching_team_mode - 1] = ranked_user_stats['userStats'][i]['mmr']
+        except:
+            pass
+    
+    # parse normal game stats
+    for i in range(3):
+        try:
+            matching_team_mode = int(normal_user_stats['userStats'][i]['matchingTeamMode'])
+            normal_mmr[matching_team_mode - 1] = normal_user_stats['userStats'][i]['mmr']
         except:
             pass
 
