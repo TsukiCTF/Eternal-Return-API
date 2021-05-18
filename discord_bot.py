@@ -12,7 +12,19 @@ bot_token_file = open('discord-bot-token')  # file containing one line of the di
 bot_token = bot_token_file.readline().rstrip()
 client = discord.Client()
 
-# enum for tiers
+
+# season constants
+NORMAL_SEASON = 0
+SEASON_1 = 1
+PRE_SEASON_2 = 2
+SEASON_2 = 3
+
+# mode constants
+SOLO_MODE = 1
+DUO_MODE = 2
+SQUAD_MODE = 3
+
+# tier constants
 IRON_4 = 0
 IRON_3 = 100
 IRON_2 = 200
@@ -38,6 +50,41 @@ DIAMOND_3 = 2100
 DIAMOND_2 = 2200
 DIAMOND_1 = 2300
 TITAN = 2400
+
+# character name list
+CHARACTER_LIST = [
+    'null', 
+    'Jackie',
+    'Aya',
+    'Fiora',
+    'Magnus',
+    'Zahir',
+    'Nadine',
+    'Hyunwoo',
+    'Hart',
+    'Isol',
+    'LiDailin',
+    'Yuki',
+    'Hyejin',
+    'Xiukai',
+    'Chiara',
+    'Sissela',
+    'Silvia',
+    'Adriana',
+    'Shoichi',
+    'Emma',
+    'Lenox',
+    'Rozzi',
+    'Luke',
+    'Cathy',
+    'Adela',
+    'Bernice',
+    'Barbara',
+    'Alex',
+    'Sua',
+    'Leon',
+    'New character']
+
 
 
 @client.event
@@ -72,24 +119,28 @@ async def on_message(message):
         await message.channel.send('https://cdn.discordapp.com/emojis/841500255614009384.png?v=1')
     if message.content == '.isol':
         await message.channel.send('https://cdn.discordapp.com/attachments/817667857676632075/842401073775640586/viewimage.png')
+    if message.content == '.chiara':
+        await message.channel.send('https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png')
+    if message.content == '.silvia':
+        await message.channel.send('https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png')
     if message.content.startswith('.rank '):
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
-
+    if message.content.startswith('.games '):
+        embedVar = search_user_games(message.content.split()[1])
+        await message.channel.send(embed=embedVar)
 
 
 def search_user_ranking(nickname):
     if not nickname:
         return
     user_num = api_client.get_user_num(nickname)
-    # fetch normal, ranked game stats
-    ranked_user_stats = api_client.get_user_stats(user_num, 3)
-    normal_user_stats = api_client.get_user_stats(user_num, 0)
     
     ranked_mmr = [0, 0, 0]
     normal_mmr = [0, 0, 0]
     
-    # parse ranked game stats
+    # fetch and parse ranked game stats
+    ranked_user_stats = api_client.get_user_stats(user_num, SEASON_2)
     for i in range(3):
         try:
             matching_team_mode = int(ranked_user_stats['userStats'][i]['matchingTeamMode'])
@@ -97,7 +148,8 @@ def search_user_ranking(nickname):
         except:
             pass
     
-    # parse normal game stats
+    # fetch and parse normal game stats
+    normal_user_stats = api_client.get_user_stats(user_num, NORMAL_SEASON)
     for i in range(3):
         try:
             matching_team_mode = int(normal_user_stats['userStats'][i]['matchingTeamMode'])
@@ -113,6 +165,55 @@ def search_user_ranking(nickname):
     embedVar.add_field(name='Normal Solo', value='{0} MMR'.format(normal_mmr[0]), inline=True)
     embedVar.add_field(name='Duo', value='{0} MMR'.format(normal_mmr[1]), inline=True)
     embedVar.add_field(name='Squad', value='{0} MMR'.format(normal_mmr[2]), inline=True)
+    return embedVar
+
+    
+def search_user_games(nickname):
+    if not nickname:
+        return
+    user_num = api_client.get_user_num(nickname)
+    
+    # fetch and parse user games
+    user_games_unparsed = api_client.get_user_games(user_num)
+    user_games = user_games_unparsed['userGames']
+    
+    embedVar = discord.Embed(title='10 Recent Game for {0}'.format(nickname.upper()), color=0x0db6e0)
+    embedVar.set_thumbnail(url='https://media.discordapp.net/attachments/395813565208068096/841530242074148894/rio.png')
+    
+    for game in user_games:
+        # check game season
+        game_type = int(game['seasonId'])
+        if game_type == NORMAL_SEASON:
+            game_type = 'Normal'
+        elif game_type == SEASON_1:
+            game_type = 'Ranked (Season 1)'
+        elif game_type == PRE_SEASON_2:
+            game_type = 'Ranked (Pre-Season 2)'
+        elif game_type == SEASON_2:
+            game_type = 'Ranked'
+        
+        # check game mode
+        game_team_mode = int(game['matchingTeamMode'])
+        if game_team_mode == SOLO_MODE:
+            game_team_mode = 'Solo'
+        elif game_team_mode == DUO_MODE:
+            game_team_mode = 'Duo'
+        elif game_team_mode == SQUAD_MODE:
+            game_team_mode = 'Squad'
+        
+        # check game rank
+        game_rank = int(game['gameRank'])
+        
+        # check game kills, assists, monster kills
+        game_kills = int(game['playerKill'])
+        game_assists = int(game['playerAssistant'])
+        game_monster_kills = int(game['monsterKill']) 
+        
+        # check game character
+        game_character = CHARACTER_LIST[int(game['characterNum'])]
+        
+        embedVar.add_field(name='{0} {1}'.format(game_type, game_team_mode), value='{0}: rank #{1} - ({2}/{3}/{4})'.format(game_character, game_rank, game_kills, game_assists, game_monster_kills), inline=False)
+      
     return embedVar
 
 
@@ -171,6 +272,7 @@ def get_tier(mmr):
     elif TITAN <= mmr:
         tier += 'Titan - {0} LP'.format(mmr % TITAN)
     return tier
+
 
 
 # start the discord bot
