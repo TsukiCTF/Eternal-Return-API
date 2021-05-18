@@ -50,6 +50,7 @@ DIAMOND_3 = 2100
 DIAMOND_2 = 2200
 DIAMOND_1 = 2300
 TITAN = 2400
+IMMORTAL = 2600
 
 # character name list
 CHARACTER_LIST = [
@@ -86,7 +87,6 @@ CHARACTER_LIST = [
     'New character']
 
 
-
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
@@ -100,7 +100,7 @@ async def on_message(message):
     if message.content.startswith('.'):
         print('[+]{0}: {1}'.format(message.author, message.content)) # log message
     if message.content == '.help':
-        await message.channel.send('Bot commands are: ``.rank <name>``, ``.source``, ``.rio``, ``.test``')
+        await message.channel.send('Bot commands are: ``.rank <name>``, ``.games <name>``, ``.source``, ``.rio``')
     if message.content == '.source':
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
     if message.content == '.test':
@@ -177,7 +177,7 @@ def search_user_games(nickname):
     user_games_unparsed = api_client.get_user_games(user_num)
     user_games = user_games_unparsed['userGames']
     
-    embedVar = discord.Embed(title='10 Recent Game for {0}'.format(nickname.upper()), color=0x0db6e0)
+    embedVar = discord.Embed(title='10 Recent Games for {0}'.format(nickname.upper()), color=0x0db6e0)
     embedVar.set_thumbnail(url='https://media.discordapp.net/attachments/395813565208068096/841530242074148894/rio.png')
     
     for game in user_games:
@@ -269,8 +269,10 @@ def get_tier(mmr):
         tier += 'Diamond 2 - {0} LP'.format(mmr % DIAMOND_2)
     elif DIAMOND_1 <= mmr < TITAN:
         tier += 'Diamond 1 - {0} LP'.format(mmr % DIAMOND_1)
-    elif TITAN <= mmr:
+    elif TITAN <= mmr < IMMORTAL:
         tier += 'Titan - {0} LP'.format(mmr % TITAN)
+    elif IMMORTAL <= mmr:
+        tier += 'Immortal - {0} LP'.format(mmr % IMMORTAL)
     return tier
 
 
