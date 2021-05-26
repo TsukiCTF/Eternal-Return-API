@@ -87,6 +87,7 @@ CHARACTER_LIST = [
     'New character']
 
 
+
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
@@ -123,6 +124,13 @@ async def on_message(message):
         await message.channel.send('https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png')
     if message.content == '.silvia':
         await message.channel.send('https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png')
+    if message.content == '.헤으응':
+        await message.channel.send('헤으응')
+    if message.content.startswith('.avatar'):
+        if message.mentions.__len__() > 0:
+            await message.channel.send(message.mentions[0].avatar_url)
+        else:
+            await message.channel.send(message.author.avatar_url)
     if message.content.startswith('.rank '):
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
