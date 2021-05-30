@@ -19,8 +19,8 @@ class ErbsClient(object):
     def get_user_num(self, user_nickname):
         url = f'{self.api_url}/user/nickname/'
         r = requests.get(url, headers=self.http_header, params={('query', user_nickname),})
-        r_data = r.json()
-        user_num = r_data['user']['userNum']
+        r_json = r.json()
+        user_num = r_json['user']['userNum']
         return user_num
         
     # Get user stats
