@@ -109,7 +109,7 @@ async def on_message(message):
     if message.content == '.test':
         await message.channel.send('Hello')
     if message.content == '.rio':
-        await message.channel.send('https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png')
+        await message.channel.send('Preview Disabled: <https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png>')
     if message.content == '.shoichi':
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg')
     if message.content == '.adrianna':
@@ -126,6 +126,8 @@ async def on_message(message):
         await message.channel.send('https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png')
     if message.content == '.silvia':
         await message.channel.send('https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png')
+    if message.content == '.eva':
+        await message.channel.send('https://cdn.discordapp.com/attachments/788518957953843222/850172838115541073/unknown.png')
     if message.content.startswith('.avatar'):
         if message.mentions.__len__() > 0:
             await message.channel.send(message.mentions[0].avatar_url)
