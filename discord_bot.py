@@ -100,45 +100,66 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content.startswith('.'):
-        print('[+]{0}: {1}'.format(message.author, message.content)) # log message
     if message.content == '.help':
-        await message.channel.send('Bot commands are: ``.rank <name>``, ``.games <name>``, ``.source``, ``.rio``')
+        print(f'[+]{message.author}: {message.content}')
+        await message.channel.send('Bot commands are:\n``.rank <name>``\n``.games <name>``\n``.info <character name> <q/w/e/r/passive>``\n``.source``\n``.rio``')
     if message.content == '.source':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
     if message.content == '.test':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Hello')
     if message.content == '.rio':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Preview Disabled: <https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png>')
     if message.content == '.shoichi':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg')
     if message.content == '.adrianna':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/837001169380573227/842264006790086676/maxresdefault.png')
     if message.content == '.lenox':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/842263098564149249/image0.jpg')
     if message.content == '.cathy':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/emojis/840598438797115392.png?v=1')
     if message.content == '.nadine':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/emojis/841500255614009384.png?v=1')
     if message.content == '.isol':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/817667857676632075/842401073775640586/viewimage.png')
     if message.content == '.chiara':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png')
     if message.content == '.silvia':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png')
     if message.content == '.eva':
+        print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/788518957953843222/850172838115541073/unknown.png')
     if message.content.startswith('.avatar'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             await message.channel.send(message.mentions[0].avatar_url)
         else:
             await message.channel.send(message.author.avatar_url)
     if message.content.startswith('.rank '):
+        print(f'[+]{message.author}: {message.content}')
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
     if message.content.startswith('.games '):
+        print(f'[+]{message.author}: {message.content}')
         embedVar = search_user_games(message.content.split()[1])
         await message.channel.send(embed=embedVar)
+    if message.content.startswith('.info '):
+        print(f'[+]{message.author}: {message.content}')
+        try:
+            img = get_skill_information_image(message.content.split()[1], message.content.split()[2])
+            await message.channel.send(file=img)
+        except:
+            await message.channel.send('Use: ``.info <character name> <q/w/e/r/passive>``')
 
 
 def search_user_ranking(nickname):
@@ -286,6 +307,23 @@ def get_tier(mmr):
     return tier
 
 
+def get_skill_information_image(character_name, skill_name):
+    character_name = character_name.lower()
+    skill_name = skill_name.lower()
+    
+    # check user input to prevent command injection
+    if not character_name.isalpha():
+        return None
+    if not skill_name.isalpha():
+        return None
+        
+    image_path = f'resource/{character_name}/{skill_name}.png'
+    image = None
+    with open(image_path, 'rb') as f:
+        image = discord.File(f)
+    return image
+    
+    
 
 # start the discord bot
 client.run(bot_token)
