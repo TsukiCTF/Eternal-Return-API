@@ -86,6 +86,7 @@ CHARACTER_LIST = [
     'Leon',
     'Eleven',
     'Rio',
+    'William',
     'New Character']
 
 
@@ -100,66 +101,104 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-    if message.content == '.help':
+    elif message.content == '.help':
         print(f'[+]{message.author}: {message.content}')
-        await message.channel.send('Bot commands are:\n``.rank <name>``\n``.games <name>``\n``.info <character name> <q/w/e/r/passive>``\n``.source``\n``.rio``')
-    if message.content == '.source':
+        await message.channel.send('``.rank <name>`` : search current ER:BS rank of user\n' + \
+            '``.games <name>`` : search 10 most recent games of user\n' + \
+            '``.info <character name> <q/w/e/r/passive> : get information of a character\'s skill``\n' + \
+            '``.source`` : link to source code of this bot\n' + \
+            '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : featured character images\n' + \
+            '``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : roleplaying commands')
+    elif message.content == '.source':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
-    if message.content == '.test':
-        print(f'[+]{message.author}: {message.content}')
-        await message.channel.send('Hello')
-    if message.content == '.rio':
+    elif message.content == '.rio':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Preview Disabled: <https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png>')
-    if message.content == '.shoichi':
+    elif message.content == '.shoichi':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg')
-    if message.content == '.adrianna':
+    elif message.content == '.adrianna':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/837001169380573227/842264006790086676/maxresdefault.png')
-    if message.content == '.lenox':
+    elif message.content == '.lenox':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/818242488657117226/842263098564149249/image0.jpg')
-    if message.content == '.cathy':
+    elif message.content == '.cathy':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/emojis/840598438797115392.png?v=1')
-    if message.content == '.nadine':
+    elif message.content == '.nadine':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/emojis/841500255614009384.png?v=1')
-    if message.content == '.isol':
+    elif message.content == '.isol':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/817667857676632075/842401073775640586/viewimage.png')
-    if message.content == '.chiara':
+    elif message.content == '.chiara':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png')
-    if message.content == '.silvia':
+    elif message.content == '.silvia':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png')
-    if message.content == '.eva':
+    elif message.content == '.eva':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('https://cdn.discordapp.com/attachments/788518957953843222/850172838115541073/unknown.png')
-    if message.content.startswith('.avatar'):
+    elif message.content.startswith('.avatar'):
         print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             await message.channel.send(message.mentions[0].avatar_url)
         else:
             await message.channel.send(message.author.avatar_url)
-    if message.content.startswith('.rank '):
+    elif message.content.startswith('.rank '):
         print(f'[+]{message.author}: {message.content}')
         embedVar = search_user_ranking(message.content.split()[1])
         await message.channel.send(embed=embedVar)
-    if message.content.startswith('.games '):
+    elif message.content.startswith('.games '):
         print(f'[+]{message.author}: {message.content}')
         embedVar = search_user_games(message.content.split()[1])
         await message.channel.send(embed=embedVar)
-    if message.content.startswith('.info '):
+    elif message.content.startswith('.info '):
         print(f'[+]{message.author}: {message.content}')
         try:
             img = get_skill_information_image(message.content.split()[1], message.content.split()[2])
             await message.channel.send(file=img)
         except:
             await message.channel.send('Use: ``.info <character name> <q/w/e/r/passive>``')
+    elif message.content.startswith('.bite'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('bite', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('bite', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.hug'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('hug', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('hug', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.dance'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('dance', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('dance', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.slap'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('slap', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('slap', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.poke'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('poke', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('poke', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.stare'):
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('stare', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('stare', message.author)
+        await message.channel.send(embed=embedVar)
 
 
 def search_user_ranking(nickname):
@@ -311,7 +350,7 @@ def get_skill_information_image(character_name, skill_name):
     character_name = character_name.lower()
     skill_name = skill_name.lower()
     
-    # check user input to prevent command injection
+    # validate user input to prevent command injection
     if not character_name.isalpha():
         return None
     if not skill_name.isalpha():
@@ -322,8 +361,29 @@ def get_skill_information_image(character_name, skill_name):
     with open(image_path, 'rb') as f:
         image = discord.File(f)
     return image
+
+
+def get_roleplay_image(command, author, mention=None):
+    # open text file containing URLs for command
+    text_file_path = f'resource/roleplay/{command}.txt'
+    with open(text_file_path, 'r') as f:
+        lines = f.readlines()
+        # choose a random URL
+        image_url = random.choice(lines)
     
-    
+    # set description text
+    if (mention == None):
+        author = str(author).split('#')[0]   # strip discord tag
+        description_text = f'**{author}** {command}s...'
+    else:
+        author = str(author).split('#')[0]   # strip discord tag
+        mention = str(mention).split('#')[0]
+        description_text = f'**{author}** {command}s **{mention}**...'
+
+    embedVar = discord.Embed(description=description_text, color=0x0db6e0)
+    embedVar.set_image(url=image_url)
+    return embedVar
+
 
 # start the discord bot
 client.run(bot_token)
