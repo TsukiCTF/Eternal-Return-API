@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from ERBSClient import ErbsClient
 import discord
+import random
 
 # instantiate the erbs api client
 api_key_file = open('api-key')  # file containing one line of the ER:BS api key
