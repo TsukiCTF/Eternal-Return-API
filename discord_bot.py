@@ -382,7 +382,7 @@ def get_roleplay_image(command, author, mention=None):
         description_text = f'**{author}** {command}s **{mention}**...'
 
     embedVar = discord.Embed(description=description_text, color=0x0db6e0)
-    embedVar.set_image(url=image_url)
+    embedVar.set_thumbnail(url=image_url)
     return embedVar
 
 
