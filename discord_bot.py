@@ -104,12 +104,12 @@ async def on_message(message):
         return
     elif message.content == '.help':
         print(f'[+]{message.author}: {message.content}')
-        await message.channel.send('``.rank <name>`` : search current ER:BS rank of user\n' + \
-            '``.games <name>`` : search 10 most recent games of user\n' + \
-            '``.info <character name> <q/w/e/r/passive> : get information of a character\'s skill``\n' + \
-            '``.source`` : link to source code of this bot\n' + \
-            '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : featured character images\n' + \
-            '``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : roleplaying commands')
+        await message.channel.send('``.rank <name>`` : __search current ER:BS rank of user__\n' + \
+            '``.games <name>`` : __search 10 most recent games of user__\n' + \
+            '``.info <character name> <q/w/e/r/passive>`` : __get information of a character\'s skill__\n' + \
+            '``.source`` : __link to source code of this bot__\n' + \
+            '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : __featured character images__\n' + \
+            '``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__')
     elif message.content == '.source':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
@@ -165,36 +165,42 @@ async def on_message(message):
         except:
             await message.channel.send('Use: ``.info <character name> <q/w/e/r/passive>``')
     elif message.content.startswith('.bite'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('bite', message.author, message.mentions[0])
         else:
             embedVar = get_roleplay_image('bite', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.hug'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('hug', message.author, message.mentions[0])
         else:
             embedVar = get_roleplay_image('hug', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.dance'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('dance', message.author, message.mentions[0])
         else:
             embedVar = get_roleplay_image('dance', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.slap'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('slap', message.author, message.mentions[0])
         else:
             embedVar = get_roleplay_image('slap', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.poke'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('poke', message.author, message.mentions[0])
         else:
             embedVar = get_roleplay_image('poke', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.stare'):
+        print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('stare', message.author, message.mentions[0])
         else:
