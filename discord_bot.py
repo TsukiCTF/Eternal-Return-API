@@ -88,6 +88,7 @@ CHARACTER_LIST = [
     'Eleven',
     'Rio',
     'William',
+    'Nicky',
     'New Character']
 
 
