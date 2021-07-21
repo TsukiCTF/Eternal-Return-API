@@ -110,7 +110,7 @@ async def on_message(message):
             '``.info <character name> <q/w/e/r/passive>`` : __get information of a character\'s skill__\n' + \
             '``.source`` : __link to source code of this bot__\n' + \
             '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : __featured character images__\n' + \
-            '``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__')
+            '``.tucc``, ``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__')
     elif message.content == '.source':
         print(f'[+]{message.author}: {message.content}')
         await message.channel.send('Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API')
@@ -201,6 +201,13 @@ async def on_message(message):
             embedVar = get_roleplay_image('poke', message.author)
         await message.channel.send(embed=embedVar)
     elif message.content.startswith('.stare'):
+        print(f'[+]{message.author}: {message.content}')
+        if message.mentions.__len__() > 0:
+            embedVar = get_roleplay_image('stare', message.author, message.mentions[0])
+        else:
+            embedVar = get_roleplay_image('stare', message.author)
+        await message.channel.send(embed=embedVar)
+    elif message.content.startswith('.tucc'):
         print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
             embedVar = get_roleplay_image('stare', message.author, message.mentions[0])
@@ -389,7 +396,7 @@ def get_roleplay_image(command, author, mention=None):
         description_text = f'**{author}** {command}s **{mention}**...'
 
     embedVar = discord.Embed(description=description_text, color=0x0db6e0)
-    embedVar.set_thumbnail(url=image_url)
+    embedVar.set_image(url=image_url)
     return embedVar
 
 
