@@ -210,9 +210,9 @@ async def on_message(message):
     elif message.content.startswith('.tucc'):
         print(f'[+]{message.author}: {message.content}')
         if message.mentions.__len__() > 0:
-            embedVar = get_roleplay_image('stare', message.author, message.mentions[0])
+            embedVar = get_roleplay_image('tucc', message.author, message.mentions[0])
         else:
-            embedVar = get_roleplay_image('stare', message.author)
+            embedVar = get_roleplay_image('tucc', message.author)
         await message.channel.send(embed=embedVar)
 
 
