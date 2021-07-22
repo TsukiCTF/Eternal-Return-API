@@ -19,6 +19,8 @@ NORMAL_SEASON = 0
 SEASON_1 = 1
 PRE_SEASON_2 = 2
 SEASON_2 = 3
+PRE_SEASON_3 = 4
+SEASON_3 = 5
 
 # mode constants
 SOLO_MODE = 1
@@ -89,6 +91,7 @@ CHARACTER_LIST = [
     'Rio',
     'William',
     'Nicky',
+    'Nathapon',
     'New Character']
 
 
@@ -225,7 +228,7 @@ def search_user_ranking(nickname):
     normal_mmr = [0, 0, 0]
     
     # fetch and parse ranked game stats
-    ranked_user_stats = api_client.get_user_stats(user_num, SEASON_2)
+    ranked_user_stats = api_client.get_user_stats(user_num, PRE_SEASON_3)
     for i in range(3):
         try:
             matching_team_mode = int(ranked_user_stats['userStats'][i]['matchingTeamMode'])
@@ -275,6 +278,10 @@ def search_user_games(nickname):
         elif game_type == PRE_SEASON_2:
             game_type = 'Ranked (Pre-Season 2)'
         elif game_type == SEASON_2:
+            game_type = 'Ranked (Season 2)'
+        elif game_type == PRE_SEASON_3:
+            game_type = 'Ranked (Pre-Season 3)'
+        elif game_type == SEASON_3:
             game_type = 'Ranked'
         
         # check game mode
