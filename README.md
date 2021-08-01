@@ -1,5 +1,5 @@
 # Eternal Return API (Python3)
-*Python3 wrapper of official API from [Eternal Return Developer Portal][1] **to obtain up-to-date user rankings in the game.***
+**Python3** wrapper of official API from [Eternal Return Developer Portal][1] to obtain up-to-date user rankings in the game.
 
 ## Example Application
 *discord_bot.py* uses *ERBSClient.py* to receive commands from Discord channel and send results.
