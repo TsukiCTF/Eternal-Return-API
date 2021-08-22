@@ -87,6 +87,7 @@ COMMON_STRINGS_DICT = {
             '``.games <name>`` : __search 10 most recent games of user__\n' + \
             '``.info <character name> <q/w/e/r/passive>`` : __get information of a character\'s skill__\n' + \
             '``.source`` : __link to source code of this bot__\n' + \
+            '``.avatar`` : __image of profile picture__\n' + \
             '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : __featured character images__\n' + \
             '``.tucc``, ``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__',
     '.source': 'Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API',
