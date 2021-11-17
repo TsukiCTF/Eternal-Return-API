@@ -5,6 +5,8 @@ PRE_SEASON_2 = 2
 SEASON_2 = 3
 PRE_SEASON_3 = 4
 SEASON_3 = 5
+PRE_SEASON_4 = 6
+SEASON_4 = 7
 
 # mode constants
 SOLO_MODE = 1
@@ -83,6 +85,7 @@ CHARACTER_LIST = [
     'Jenny',
     'Camilo',
     'Chloe',
+    'Johann',
     'New Character'
 ]
 

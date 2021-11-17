@@ -87,7 +87,7 @@ def search_user_ranking(nickname):
     normal_mmr = [0, 0, 0]
     
     # fetch and parse ranked game stats
-    ranked_user_stats = api_client.get_user_stats(user_num, SEASON_3)
+    ranked_user_stats = api_client.get_user_stats(user_num, SEASON_4)
     for i in range(3):
         try:
             matching_team_mode = int(ranked_user_stats['userStats'][i]['matchingTeamMode'])
@@ -106,7 +106,7 @@ def search_user_ranking(nickname):
 
     embedVar = discord.Embed(title=nickname.upper(), color=0x0db6e0)
     embedVar.set_thumbnail(url=COMMON_STRINGS_DICT['bot avatar'])
-    embedVar.add_field(name='Season 3 Solo', value=get_tier(ranked_mmr[0]), inline=True)
+    embedVar.add_field(name='Season 4 Solo', value=get_tier(ranked_mmr[0]), inline=True)
     embedVar.add_field(name='Duo', value=get_tier(ranked_mmr[1]), inline=True)
     embedVar.add_field(name='Squad', value=get_tier(ranked_mmr[2]), inline=True)
     embedVar.add_field(name='Normal Solo', value='{0} MMR'.format(normal_mmr[0]), inline=True)
@@ -141,6 +141,10 @@ def search_user_games(nickname):
         elif game_type == PRE_SEASON_3:
             game_type = 'Ranked (Pre-Season 3)'
         elif game_type == SEASON_3:
+            game_type = 'Ranked'
+        elif game_type == PRE_SEASON_4:
+            game_type = 'Ranked (Pre-Season 4)'
+        elif game_type == SEASON_4:
             game_type = 'Ranked'
         
         # check game mode
