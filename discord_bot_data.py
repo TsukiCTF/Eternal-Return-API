@@ -108,7 +108,7 @@ COMMON_STRINGS_DICT = {
     '.chiara': 'https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png',
     '.silvia': 'https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png',
     '.eva': 'https://cdn.discordapp.com/attachments/788518957953843222/850172838115541073/unknown.png',
-    '.lidailin' : '|| https://cdn.discordapp.com/attachments/813369464213078046/912134239301017630/image1.jpg ||',
+    '.lidailin' : 'https://cdn.discordapp.com/attachments/841432452627038221/912383122656604170/86506149_p0_master1200.png',
     '.aya': 'https://cdn.discordapp.com/attachments/788518957953843222/912136943754674196/6b96934fa3abe1052a3fb945fd401c9c.jpg',
     '.hyejin': 'https://cdn.discordapp.com/attachments/788518957953843222/912136706415792128/viewimage.png',
     '.jackie': 'https://cdn.discordapp.com/attachments/788518957953843222/912136849856794684/EmJooe-VoAYd4a-.png',
