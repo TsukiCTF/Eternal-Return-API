@@ -96,10 +96,10 @@ COMMON_STRINGS_DICT = {
             '``.info <character name> <q/w/e/r/passive>`` : __get information of a character\'s skill__\n' + \
             '``.source`` : __link to source code of this bot__\n' + \
             '``.avatar`` : __image of profile picture__\n' + \
-            '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva`` : __featured character images__\n' + \
+            '``.rio``, ``.shoichi``, ``.adrianna``, ``.lenox``, ``.cathy``, ``.nadine``, ``.isol``, ``.chiara``, ``.silvia``, ``.eva``, ``.lidailin`` : __featured character images__\n' + \
             '``.tucc``, ``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__',
     '.source': 'Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API',
-    '.rio': 'Preview Disabled: <https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png>',
+    '.rio': '|| https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png ||',
     '.shoichi': 'https://cdn.discordapp.com/attachments/818242488657117226/841544863627083776/image0.jpg',
     '.adrianna': 'https://cdn.discordapp.com/attachments/837001169380573227/842264006790086676/maxresdefault.png',
     '.lenox': 'https://cdn.discordapp.com/attachments/818242488657117226/842263098564149249/image0.jpg',
@@ -109,6 +109,7 @@ COMMON_STRINGS_DICT = {
     '.chiara': 'https://cdn.discordapp.com/attachments/844325341073113159/844325373129785364/cb38a4463de986eb5f39dfd725ffd22f.png',
     '.silvia': 'https://cdn.discordapp.com/attachments/835727238187057203/842281890705571880/85867309_p0_master1200.png',
     '.eva': 'https://cdn.discordapp.com/attachments/788518957953843222/850172838115541073/unknown.png',
+    '.lidailin' : '|| https://cdn.discordapp.com/attachments/813369464213078046/912134239301017630/image1.jpg ||',
     '.info': 'Use: ``.info <character name> <q/w/e/r/passive>``',
     'bad roleplaying command': 'No such roleplaying command exists. Use ``.help`` to list available commands',
     'bot avatar': 'https://media.discordapp.net/attachments/395813565208068096/841530242074148894/rio.png'
