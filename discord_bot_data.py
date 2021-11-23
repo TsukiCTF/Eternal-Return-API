@@ -99,7 +99,7 @@ COMMON_STRINGS_DICT = {
             '``.tucc``, ``.bite``, ``.hug``, ``.dance``, ``.slap``, ``.poke``, ``.stare`` : __roleplaying commands__',
     '.source': 'Author: Evade | Source code: https://github.com/TsukiCTF/Eternal-Return-API',
     '.rio': '|| https://cdn.discordapp.com/attachments/414822020967301121/841097700384571402/rio.png ||',
-    '.shoichi': 'https://cdn.discordapp.com/attachments/876628334933573664/912146750641422376/93677098_p4_master1200.jpg',
+    '.shoichi': 'https://cdn.discordapp.com/attachments/876628334933573664/912534529422532678/93677098_p1_master1200.jpg',
     '.adrianna': 'https://cdn.discordapp.com/attachments/837001169380573227/842264006790086676/maxresdefault.png',
     '.lenox': 'https://cdn.discordapp.com/attachments/818242488657117226/842263098564149249/image0.jpg',
     '.cathy': '|| https://cdn.discordapp.com/attachments/876628334933573664/912142057324306452/87937264_p0_master1200.jpg ||',
