@@ -86,6 +86,7 @@ CHARACTER_LIST = [
     'Chloe',
     'Johann',
     'Bianca',
+    'Celine',
     'New Character'
 ]
 
